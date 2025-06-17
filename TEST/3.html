@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用模板自动生成问题（可变选项数量）</title>
+</head>
+
+<body>
+
+    <h1>调查问卷</h1>
+
+    <form id="surveyForm">
+        <label for="name">姓名：</label>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="age">年龄：</label>
+        <input type="text" id="age" name="age"><br>
+
+        <div id="questionsContainer"></div>
+
+        <button type="button" onclick="generateQuestions()">生成问题</button>
+    </form>
+
+    <script>
+        function generateQuestions() {
+            const questionsContainer = document.getElementById('questionsContainer');
+            questionsContainer.innerHTML = ''; // 清空容器
+
+            // 模拟从后端获取的问题列表
+            const questionsList = [
+                {
+                    question: '问题 1：',
+                    options: ['选项 A', '选项 B', '选项 C']
+                },
+                {
+                    question: '问题 2：',
+                    options: ['选项 X', '选项 Y', '选项 Z']
+                },
+                // 更多问题...
+            ];
+
+            // 使用模板字符串动态生成问题和选项元素
+            questionsList.forEach((questionObj, index) => {
+                const questionTemplate = `
+                    <div>
+                        <label for="question${index + 1}">${questionObj.question}</label>
+                        <select id="question${index + 1}" name="question${index + 1}">
+                        ${generateOptions(questionObj.options)}
+                        </select>
+                    </div>
+                `;
+
+                questionsContainer.innerHTML += questionTemplate;
+            });
+        }
+
+        function generateOptions(options) {
+            // 生成选项的模板字符串
+            return options.map(option => `<option value="${option}">${option}</option>`).join('');
+        }
+    </script>
+
+</body>
+
+</html>

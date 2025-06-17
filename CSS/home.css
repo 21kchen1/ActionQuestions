@@ -1,0 +1,27 @@
+* {
+    /* 使元素的宽度和高度包括内边距和边框 */
+    box-sizing: border-box;
+    /* 变化时间 */
+    transition: all 0.3s;
+    scroll-behavior: smooth;
+    word-wrap: break-word;
+}
+
+html {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+    margin: 0;
+    padding-bottom: 10%;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #333;
+}
+
+.mainBox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}

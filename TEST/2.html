@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问卷进度条</title>
+    <style>
+        #progress-bar {
+            width: 100%;
+            background-color: #f1f1f1;
+            margin: 20px 0;
+        }
+
+        #filler {
+            height: 20px;
+            background-color: #4caf50;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="progress-bar">
+        <div id="filler" style="width: 0%"></div>
+    </div>
+
+    <form id="questionnaire">
+        <!-- 你的问卷内容在这里添加 -->
+        <label for="q1">问题 1:</label>
+        <input type="text" id="q1" name="q1" required><br>
+
+        <label for="q2">问题 2:</label>
+        <input type="text" id="q2" name="q2" required><br>
+
+        <!-- 其他问题... -->
+
+        <button type="button" onclick="updateProgressBar()">提交</button>
+    </form>
+
+    <script>
+        function updateProgressBar() {
+            // 获取问卷表单
+            var form = document.getElementById('questionnaire');
+            // 获取已填写问题数量
+            var answeredQuestions = 0;
+
+            for (var i = 0; i < form.elements.length; i++) {
+                if (form.elements[i].type === 'text' && form.elements[i].value !== '') {
+                    answeredQuestions++;
+                }
+            }
+
+            // 计算填写进度
+            var progress = (answeredQuestions / form.elements.length) * 100;
+
+            // 更新进度条宽度
+            document.getElementById('filler').style.width = progress + '%';
+        }
+    </script>
+
+</body>
+
+</html>

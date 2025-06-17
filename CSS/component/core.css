@@ -1,0 +1,97 @@
+/* 设置中心列表 */
+
+.coreBox {
+    width: 80%;
+    height: auto;
+    background-color: #fff;
+    margin-top: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+.centerBox {
+    width: 100%;
+    padding: 10% 6% 5% 6%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 设置标题 */
+.headBox {
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+
+.headBox h1 {
+    font-size: 160%;
+    font-weight: 900;
+    margin: 0 0 10% 0;
+}
+
+.headBox p {
+    font-size: 110%;
+    font-weight: 600;
+    text-align: left;
+    line-height: 150%;
+}
+
+/* 题目设置 */
+.question {
+    margin-top: 40px;
+}
+
+/* 标签设置 */
+.question .sign {
+    width: fit-content;
+    margin-left: 13px;
+    border-radius: 5px;
+    background-color: #e4e4e4cb;
+}
+
+.question .sign p {
+    font-family: "microsoft yahei";
+    font-weight: 600;
+    font-size: 90%;
+    text-align: center;
+    padding: 6px;
+}
+
+/* 题干设置 */
+.stem h2 {
+    font-size: 120%;
+    font-weight: 600;
+}
+
+.stem .must {
+    display: inline-flex;
+    width: 12px;
+    color: #ff6666;
+}
+
+.stem .index {
+    font-family: "microsoft yahei";
+    font-weight: 900;
+}
+
+/* 选项设置 */
+.question .itemList {
+    display: flex;
+    flex-direction: column;
+}
+
+.question .item {
+    font-weight: 800;
+    font-size: 100%;
+    border-radius: 3px;
+    display: flex;
+    height: 40px;
+}
+
+.question label {
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    height: 100%;
+    flex: 1;
+}

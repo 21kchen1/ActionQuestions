@@ -1,0 +1,14 @@
+/* 背景设置 */
+
+.backgroundBox {
+    width: 100%;
+    /* 背景固定 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #f4f4f4;
+    background-size: cover;
+    overflow: hidden;
+    z-index: -1;
+}

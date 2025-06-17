@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问卷调查系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;                       
+            align-items: center;
+            height: 100vh;
+        }
+
+        #survey-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        .submit-btn {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="survey-container">
+    <h2>问卷调查</h2>
+
+    <div class="question">
+        <p>1. 单选题：你喜欢的颜色是什么？</p>
+        <input type="radio" name="q1" value="red"> 红色
+        <input type="radio" name="q1" value="blue"> 蓝色
+        <input type="radio" name="q1" value="green"> 绿色
+    </div>
+
+    <div class="question">
+        <p>2. 多选题：你平常使用的社交媒体有哪些？</p>
+        <input type="checkbox" name="q2" value="facebook"> Facebook
+        <input type="checkbox" name="q2" value="twitter"> Twitter
+        <input type="checkbox" name="q2" value="instagram"> Instagram
+    </div>
+
+    <!-- Add more questions as needed -->
+
+    <button class="submit-btn" onclick="submitSurvey()">提交</button>
+</div>
+
+<script>
+    // 定义问卷问题和答案的数据结构
+    const surveyData = [
+        { question: "你喜欢的颜色是什么？", type: "radio", name: "q1", answers: ["红色", "蓝色", "绿色"] },
+        { question: "你平常使用的社交媒体有哪些？", type: "checkbox", name: "q2", answers: ["Facebook", "Twitter", "Instagram"] }
+        // 添加更多问题
+    ];
+
+    // 用户答题结果
+    let userAnswers = {};
+
+    // 定义定时器变量
+    let timer;
+
+    // 开始计时
+    function startTimer() {
+        let seconds = 0;
+        timer = setInterval(() => {
+            seconds++;
+            console.log(`已用时：${seconds} 秒`);
+        }, 1000);
+    }
+
+    // 提交问卷
+    function submitSurvey() {
+        // 停止计时
+        clearInterval(timer);
+
+        // 获取用户答案
+        surveyData.forEach(question => {
+            const selectedOptions = Array.from(document.querySelectorAll(`input[name="${question.name}"]:checked`));
+            userAnswers[question.name] = selectedOptions.map(option => option.value);
+        });
+
+        // 计算得分（这里简单计算选择的个数，实际情况可以根据具体需求定制）
+        let totalScore = 0;
+        for (const questionName in userAnswers) {
+            totalScore += userAnswers[questionName].length;
+        }
+
+        // 显示得分
+        alert(`你的得分是：${totalScore}`);
+
+        // 存储用户信息和答题结果到本地存储
+        localStorage.setItem('surveyUser', JSON.stringify({ name: '用户姓名', email: '用户邮箱' }));
+        localStorage.setItem('surveyResults', JSON.stringify(userAnswers));
+    }
+
+    // 页面加载时开始计时
+    window.onload = startTimer;
+</script>
+
+</body>
+</html>
