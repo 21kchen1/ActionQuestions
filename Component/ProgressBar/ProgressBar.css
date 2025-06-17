@@ -1,0 +1,15 @@
+.Template.ProgressBar {
+    --barHeight: calc(var(--controlLen) * var(--controlRatio) * 0.005 * 1px);
+    width: 90%;
+    height: var(--barHeight);
+    background-color: #f1f1f1;
+    border-radius: var(--barHeight);
+    overflow: hidden;
+}
+
+/* 进度条进度 */
+.Template.ProgressBar .Filler {
+    width: 15%;
+    height: var(--barHeight);
+    background-color: #6699ff;
+}
