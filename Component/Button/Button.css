@@ -1,0 +1,29 @@
+/* 设置按钮 */
+.Template.Button {
+    --buttonHeight: calc(var(--controlLen) * var(--controlRatio) * 0.03 * 1px);
+    height: var(--buttonHeight);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* 按钮 */
+.Template.Button button {
+    width: 100%;
+    border: none;
+    font-weight: bolder;
+    font-size: calc(var(--buttonHeight) * 0.5);
+    border-radius: calc(var(--buttonHeight) * 0.3);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background-color: #0054fc98;
+    color: #fff;
+}
+
+.Template.Button button:hover {
+    transform: translateY(-2px);
+}
+
+.Template.Button button:active {
+    filter: brightness(0.5);
+}

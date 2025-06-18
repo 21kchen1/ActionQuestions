@@ -1,4 +1,4 @@
-@import url(./Page/questions/css/questions.css);
+@import url(./Page/Questions/core.css);
 
 * {
     /* 使元素的宽度和高度包括内边距和边框 */
@@ -11,7 +11,7 @@
 
 :root {
     /* 全局大小基准变量 */
-    --controlLen: 1551;
+    --controlLen: 844;
     /* 独立组件基准比例 */
     --controlRatio: 1
 }
@@ -32,4 +32,18 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
+}
+
+/* 背景 */
+.backgroundBox {
+    width: 100%;
+    /* 背景固定 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #f4f4f4;
+    background-size: cover;
+    overflow: hidden;
+    z-index: -1;
 }

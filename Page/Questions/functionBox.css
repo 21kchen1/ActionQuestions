@@ -1,0 +1,33 @@
+/* 功能栏 */
+.coreBox .embedBox {
+    width: 100%;
+    height: auto;
+}
+
+.coreBox .floatBox {
+    width: 100%;
+    height: 6vh;
+    transition: none;
+    display: flex;
+    overflow: hidden;
+    padding: 0% 2% 0% 2%;
+}
+
+.coreBox .floatBox .functionBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coreBox .floatBox .progressBox {
+    width: 60%;
+}
+
+.coreBox .floatBox .controlBox {
+    width: 40%;
+}
+
+.coreBox .floatBox .controlButton{
+    width: 33.3%;
+    padding: 0% 0% 0% 4%;
+}

@@ -1,0 +1,68 @@
+import Button from "../../Component/Button/Button.js";
+import ProgressBar from "../../Component/ProgressBar/ProgressBar.js";
+import {TemplateFactor} from "../../Component/Template/Template.js"
+
+/**
+ * 添加控制栏浮空
+ */
+function addFloat() {
+    const embedBox = document.querySelector(".coreBox .embedBox");
+    const floatBox = document.querySelector(".coreBox .floatBox");
+    window.addEventListener("scroll", () => {
+        if (!(embedBox instanceof HTMLElement) || !(floatBox instanceof HTMLElement)) return;
+        // 获取顶部位置信息
+        let topDis = embedBox.getBoundingClientRect().top;
+        if(topDis >= 0) {
+            floatBox.style.position = "static";
+            floatBox.style.boxShadow = "none";
+            floatBox.style.width = "100%"
+            return;
+        }
+        floatBox.style.position = "fixed";
+        floatBox.style.top = "0";
+        floatBox.style.width = "80%"
+        floatBox.style.boxShadow = "0 5px 10px -5px rgba(0, 0, 0, 0.5)";
+    });
+}
+
+/**
+ * 执行功能并添加组件
+ */
+async function setAll() {
+    addFloat();
+
+    // 添加进度条
+    var barFactor = new TemplateFactor(ProgressBar);
+    const progressBox = document.querySelector(".coreBox .floatBox .progressBox");
+    /**
+     * @type {ProgressBar}
+     */
+    // @ts-ignore
+    var theBar = await barFactor.create(progressBox);
+    theBar.setProgress(60);
+    // 添加控制按钮
+    var buttonFactor = new TemplateFactor(Button)
+    const saveButtonBox = document.querySelector(".coreBox .floatBox .controlButton#save");
+    /**
+     * @type {Button}
+     */
+    // @ts-ignore
+    var saveButton = await buttonFactor.create(saveButtonBox);
+    saveButton.setConfig(new Button.Config("保存", "#04a61cc7", null));
+    const jumpButtonBox = document.querySelector(".coreBox .floatBox .controlButton#jump");
+    /**
+     * @type {Button}
+     */
+    // @ts-ignore
+    var jumpButton = await buttonFactor.create(jumpButtonBox);
+    jumpButton.setConfig(new Button.Config("跳转", "#fc3200bf", null));
+    const submitButtonBox = document.querySelector(".coreBox .floatBox .controlButton#submit");
+    /**
+     * @type {Button}
+     */
+    // @ts-ignore
+    var submitButton = await buttonFactor.create(submitButtonBox);
+    submitButton.setConfig(new Button.Config("提交", null, null));
+}
+
+export default setAll
