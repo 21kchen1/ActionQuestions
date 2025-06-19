@@ -16,6 +16,22 @@ def getFilePaths(rootPath: str) -> List[str]:
         filePaths.extend([os.path.join(root, fileName) for fileName in fileNames])
     return filePaths
 
+def getFirstFloorDirPaths(rootPath: str) -> List[str]:
+    """
+    获取根目录下第一层文件夹路径
+
+    Args:
+        rootPath (str): 根目录
+
+    Returns:
+        list: 文件夹路径列表
+    """
+    filePaths = []
+    for root, dirNames, _ in os.walk(rootPath):
+        filePaths.extend([os.path.join(root, dirName) for dirName in dirNames])
+        break
+    return filePaths
+
 def getAllGIF(path: str) -> List[str]:
     return [gifPath for gifPath in getFilePaths(path) if gifPath.endswith(".gif")]
 
@@ -35,16 +51,19 @@ atypeDict = {
     "ForehandLob": "正手吊球",
 }
 
-def buildJSON(name: str) -> str:
-    jsonList = []
-    for gifPath in getAllGIF(name):
+def buildJSON(path: str) -> List[GIFJson]:
+    jsons = []
+    for gifPath in getAllGIF(path):
         src = ".\\Resource\\" + gifPath
         fname = os.path.basename(gifPath)
         atype = atypeDict.get(fname.split("_")[2])
-        jsonList.append(GIFJson(src, fname, atype,0).__dict__)
+        jsons.append(GIFJson(src, fname, atype,0).__dict__)
 
-    return f"const gifJsonList{name} = {jsonList};\nexport default gifJsonList{name};"
+    return jsons
 
-for index in range(1, 4):
-    with open(f"{index}.js", "w", encoding= "utf-8") as file:
-        file.write(buildJSON(f"{index}"))
+if __name__ == "__main__":
+    jsonsList = []
+    for path in getFirstFloorDirPaths("./"):
+        jsonsList.append(buildJSON(path))
+    with open(f"gifResource.js", "w", encoding= "utf-8") as file:
+        file.write(f"const gifJsonListSet = {jsonsList};\nexport default gifJsonListSet;")
