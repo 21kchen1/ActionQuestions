@@ -1,6 +1,6 @@
 import Button from "../../Component/Button/Button.js";
 import ProgressBar from "../../Component/ProgressBar/ProgressBar.js";
-import {TemplateFactor} from "../../Component/Template/Template.js"
+import { TemplateFactor } from "../../Component/Template/Template.js"
 
 /**
  * 添加控制栏浮空
@@ -12,7 +12,7 @@ function addFloat() {
         if (!(embedBox instanceof HTMLElement) || !(floatBox instanceof HTMLElement)) return;
         // 获取顶部位置信息
         let topDis = embedBox.getBoundingClientRect().top;
-        if(topDis >= 0) {
+        if (topDis >= 0) {
             floatBox.style.position = "static";
             floatBox.style.boxShadow = "none";
             floatBox.style.width = "100%"
@@ -48,14 +48,14 @@ async function setAll() {
      */
     // @ts-ignore
     var saveButton = await buttonFactor.create(saveButtonBox);
-    saveButton.setConfig(new Button.Config("保存", "#04a61cc7", null));
+    saveButton.setConfig(new Button.Config("保存", "var(--MainGreen)", null));
     const jumpButtonBox = document.querySelector(".coreBox .floatBox .controlButton#jump");
     /**
      * @type {Button}
      */
     // @ts-ignore
     var jumpButton = await buttonFactor.create(jumpButtonBox);
-    jumpButton.setConfig(new Button.Config("跳转", "#fc3200bf", null));
+    jumpButton.setConfig(new Button.Config("跳转", "var(--MainRed)", null));
     const submitButtonBox = document.querySelector(".coreBox .floatBox .controlButton#submit");
     /**
      * @type {Button}
@@ -65,4 +65,4 @@ async function setAll() {
     submitButton.setConfig(new Button.Config("提交", null, null));
 }
 
-export default setAll
+export { setAll };

@@ -23,6 +23,27 @@ class ProgressBar extends Template {
     setProgress(percentage) {
         this.Filler.style.width = `${percentage}%`;
     }
+
+    /**
+     * 配置按钮
+     * @param {ProgressBar.Config} config
+     */
+    setConfig(config) {
+        if (config.color)
+            this.setMainColor(config.color);
+    }
+}
+
+/**
+ * 配置子类
+ */
+ProgressBar.Config = class {
+    /**
+     * @param {string | null} color 颜色
+     */
+    constructor(color) {
+        this.color = color;
+    }
 }
 
 export default ProgressBar;

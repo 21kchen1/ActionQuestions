@@ -1,4 +1,4 @@
-import setAll from "./Page/Questions/functionBox.js";
+import { setAll } from "./Page/Questions/core.js";
 
 /**
  * 设置控制全局组件比例的 controllLen

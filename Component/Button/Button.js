@@ -24,12 +24,15 @@ class Button extends Template {
     setConfig(config) {
         this.Button.textContent = config.text;
         if (config.color)
-            this.Button.style.backgroundColor = config.color;
+            this.setMainColor(config.color);
         if (config.callback)
             this.Button.addEventListener("click", config.callback);
     }
 }
 
+/**
+ * 配置子类
+ */
 Button.Config = class {
     /**
      * 回调函数

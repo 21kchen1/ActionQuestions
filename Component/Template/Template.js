@@ -30,6 +30,14 @@ class Template {
     }
 
     /**
+     * 设置组件主题颜色
+     * @param {String} color 主题颜色
+     */
+    setMainColor(color) {
+        this.controlElement.style.setProperty("--mainColor", String(color));
+    }
+
+    /**
      * 设置组件相对于标准大小的比例
      * @param {Number} ratio 大于 0 的比例
      * @returns void

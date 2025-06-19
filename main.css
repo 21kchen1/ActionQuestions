@@ -11,13 +11,18 @@
 
 :root {
     /* 全局大小基准变量 */
-    --controlLen: 844;
+    --controlLen: 931;
     /* 独立组件基准比例 */
-    --controlRatio: 1
+    --controlRatio: 1;
+    /* 颜色 */
+    --MainBule: #6699ff;
+    --MainRed: #fc3200bf;
+    --MainGreen: #04a61cc7;
 }
 
 html {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /* Cambria, Cochin, Georgia, Times, 'Times New Roman', serif */
+    font-family: Cambria;
 }
 
 body {
