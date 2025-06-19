@@ -36,14 +36,14 @@ class Button extends Template {
 Button.Config = class {
     /**
      * 回调函数
-     * @callback callback
+     * @callback Callback
      * @returns {void}
      */
 
     /**
      * @param {string | null} text 文本
      * @param {string | null} color 颜色
-     * @param {callback | null} callback 回调函数
+     * @param {Callback | null} callback 回调函数
      */
     constructor(text, color, callback) {
         this.text = text;

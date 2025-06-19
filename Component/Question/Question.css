@@ -1,6 +1,6 @@
 /* 问题框 */
 .Template.Question {
-    --questionHeight: calc(var(--controlLen) * var(--controlRatio) * 0.30 * 1px);
+    --questionHeight: calc(var(--controlLen) * var(--controlRatio) * 0.35 * 1px);
     --mainColor: #6699ff;
     --finishColor: #04a61cc7;
 
@@ -30,7 +30,7 @@
 /* 标题 */
 .Template.Question .Title {
     width: 90%;
-    margin-bottom: 4%;
+    padding-bottom: 4%;
     font-size: calc(var(--questionHeight) * 0.08);
     font-weight: bolder;
 }
@@ -39,7 +39,7 @@
 .Template.Question .Gif {
     width: 90%;
     height: 60%;
-    margin-bottom: 4%;
+    padding-bottom: 4%;
 }
 
 /* 图片 */
@@ -88,26 +88,28 @@
 /* 评分标签 */
 .Template.Question .Rating label {
     text-align: center;
-    width: 15%;
+    width: 20%;
 }
 
 /* 评分滑动 */
 .Template.Question .Rating input[type="range"] {
     --inputHeight: calc(var(--questionHeight) * 0.07);
+    -webkit-appearance: none;
     appearance: none;
+    background: transparent;
     outline: none;
     border-radius: 5px;
-    width: 75%;
+    width: 70%;
 }
 
 /* 评分滑动按钮 */
 .Template.Question .Rating input[type="range"]::-webkit-slider-thumb {
     appearance: none;
-    width: var(--inputHeight);
+    width: calc(var(--inputHeight));
     height: var(--inputHeight);
     border: 4px solid var(--mainColor);
     background: #FFF;
-    border-radius: 20%;
+    border-radius: 50%;
     cursor: pointer;
 }
 
@@ -125,8 +127,7 @@
 .Template.Question .Rating input[type="range"]::-webkit-slider-runnable-track {
     height: var(--inputHeight);
     background: #FFF;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    border-radius: calc(var(--inputHeight) * 10);
+    border-radius: calc(var(--inputHeight));
 }
 
 /* 评分分数 */

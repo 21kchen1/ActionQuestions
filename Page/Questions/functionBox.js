@@ -62,7 +62,7 @@ async function setAll() {
      */
     // @ts-ignore
     var submitButton = await buttonFactor.create(submitButtonBox);
-    submitButton.setConfig(new Button.Config("提交", null, null));
+    submitButton.setConfig(new Button.Config("提交", null, ()=>{}));
 }
 
 export { setAll };
