@@ -12,6 +12,7 @@ class Question extends Template {
      */
     constructor(cup) {
         super(cup);
+        this.title = this.getElement(".Title");
         this.gifImg = this.getElement(".Gif img");
         this.inputSlider = this.getElement(".Rating input");
         this.inputLabel = this.getElement(".Rating .RatingValue");
@@ -41,6 +42,8 @@ class Question extends Template {
             this.setMainColor(config.color);
         if (config.finishColor)
             this.controlElement.style.setProperty("--finishColor", String(config.finishColor));
+        if (config.title)
+            this.title.textContent = config.title;
         if (config.imgPath)
             // @ts-ignore
             this.gifImg.src = config.imgPath;
@@ -67,10 +70,12 @@ Question.Config = class {
     /**
      * @param {string | null} color 颜色
      * @param {string | null} finishColor 完成颜色
+     * @param {string | null} title 问题名称
      * @param {string | null} imgPath 图像路径
      * @param {Callback | null} callback
      */
-    constructor(color, finishColor, imgPath, callback) {
+    constructor(color, finishColor, title, imgPath, callback) {
+        this.title = title;
         this.color = color;
         this.finishColor = finishColor;
         this.imgPath = imgPath;

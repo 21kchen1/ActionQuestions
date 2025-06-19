@@ -1,6 +1,7 @@
 import Button from "../../Component/Button/Button.js";
 import ProgressBar from "../../Component/ProgressBar/ProgressBar.js";
 import { TemplateFactor } from "../../Component/Template/Template.js"
+import { gifJsonList } from "./questionBox.js"
 
 /**
  * 添加控制栏浮空
@@ -26,6 +27,26 @@ function addFloat() {
 }
 
 /**
+ * 跳转到未完成题目回调函数
+ */
+function scrollToUndone() {
+    for (let index = 0; index < gifJsonList.length; index++) {
+        if (gifJsonList[index].value !== 0)
+            continue;
+        // 获取未完成题目元素
+        var undoneQuestion = document.getElementById(gifJsonList[index].fname);
+        // 滚动
+        undoneQuestion?.scrollIntoView({
+            // 平滑滚动
+            behavior: 'smooth',
+            // 将目标元素置于视口中央
+            block: 'center'
+        })
+        break;
+    }
+}
+
+/**
  * 执行功能并添加组件
  */
 async function setAll() {
@@ -40,8 +61,11 @@ async function setAll() {
     // @ts-ignore
     var theBar = await barFactor.create(progressBox);
     theBar.setProgress(60);
+
     // 添加控制按钮
     var buttonFactor = new TemplateFactor(Button)
+
+    // 保存
     const saveButtonBox = document.querySelector(".coreBox .floatBox .controlButton#save");
     /**
      * @type {Button}
@@ -49,13 +73,17 @@ async function setAll() {
     // @ts-ignore
     var saveButton = await buttonFactor.create(saveButtonBox);
     saveButton.setConfig(new Button.Config("保存", "var(--MainGreen)", null));
+
+    // 跳转
     const jumpButtonBox = document.querySelector(".coreBox .floatBox .controlButton#jump");
     /**
      * @type {Button}
      */
     // @ts-ignore
     var jumpButton = await buttonFactor.create(jumpButtonBox);
-    jumpButton.setConfig(new Button.Config("跳转", "var(--MainRed)", null));
+    jumpButton.setConfig(new Button.Config("跳转", "var(--MainRed)", scrollToUndone));
+
+    // 提交
     const submitButtonBox = document.querySelector(".coreBox .floatBox .controlButton#submit");
     /**
      * @type {Button}
