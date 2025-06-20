@@ -3,9 +3,18 @@ import { TemplateFactor } from "../../Component/Template/Template.js";
 import gifJsonListSet from "../../Resource/gifResource.js";
 
 /**
- * 全局数据存储
+ * @typedef {Object} GifJsonItem
+ * @property {string} src - 图片的路径
+ * @property {string} fname - 文件名
+ * @property {string} atype - 类型
+ * @property {number} value - 数值
  */
-var gifJsonList;
+
+/**
+ * 全局数据存储
+ * @type {GifJsonItem[]}
+ */
+var gifJsonList = [];
 
 /**
  * 设置题目类型

@@ -1,6 +1,7 @@
 import Button from "../../Component/Button/Button.js";
 import ProgressBar from "../../Component/ProgressBar/ProgressBar.js";
 import { TemplateFactor } from "../../Component/Template/Template.js"
+import { saveToJSONandDownload } from "../../Util/SaveTo.js";
 import { gifJsonList } from "./questionBox.js"
 
 /**
@@ -31,10 +32,11 @@ function addFloat() {
  */
 function scrollToUndone() {
     for (let index = 0; index < gifJsonList.length; index++) {
-        if (gifJsonList[index].value !== 0)
+        const gifJson = gifJsonList[index];
+        if (gifJson.value !== 0)
             continue;
         // 获取未完成题目元素
-        var undoneQuestion = document.getElementById(gifJsonList[index].fname);
+        var undoneQuestion = document.getElementById(gifJson.fname);
         // 滚动
         undoneQuestion?.scrollIntoView({
             // 平滑滚动
@@ -44,6 +46,33 @@ function scrollToUndone() {
         })
         break;
     }
+}
+
+/**
+ * 结果保存回调函数
+ */
+function saveToJSON() {
+    // 检测是否载入完成
+    if (gifJsonList.length <= 0) {
+        alert(`本问卷类型数据不存在。`);
+        return;
+    }
+    // 检测所有题目是否完成
+    for (let index = 0; index < gifJsonList.length; index++) {
+        const gifJson = gifJsonList[index];
+        if (gifJson.value !== 0)
+            continue;
+        alert(`${index + 1}. ${gifJson.atype} 未评估。`);
+        scrollToUndone();
+        return;
+    }
+    // 获取当前页面的 URL
+    const url = new URL(window.location.href);
+    // 使用 URLSearchParams 解析查询字符串
+    const params = new URLSearchParams(url.search);
+    // 获取参数
+    const type = params.get("type")
+    saveToJSONandDownload(gifJsonList, `问卷_${type}_评估质量数据`);
 }
 
 /**
@@ -90,7 +119,7 @@ async function setAll() {
      */
     // @ts-ignore
     var submitButton = await buttonFactor.create(submitButtonBox);
-    submitButton.setConfig(new Button.Config("提交", null, ()=>{}));
+    submitButton.setConfig(new Button.Config("提交", null, saveToJSON));
 }
 
 export { setAll };

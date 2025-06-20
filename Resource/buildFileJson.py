@@ -54,7 +54,7 @@ atypeDict = {
 def buildJSON(path: str) -> List[GIFJson]:
     jsons = []
     for gifPath in getAllGIF(path):
-        src = ".\\Resource\\" + gifPath
+        src = ".\\Resource\\" + gifPath[2 :]
         fname = os.path.basename(gifPath)
         atype = atypeDict.get(fname.split("_")[2])
         jsons.append(GIFJson(src, fname, atype,0).__dict__)
