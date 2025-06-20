@@ -20,17 +20,30 @@ class Question extends Template {
         this._init();
     }
 
+    /**
+     *
+     * @param {Number} value 设置问题数值
+     */
+    setQuestionValue(value) {
+        // @ts-ignore
+        this.inputSlider.value = value;
+        this.inputSlider.click();
+    }
+
+    updateState() {
+        // @ts-ignore
+        this.inputLabel.textContent = this.inputSlider.value;
+        // 设置完成后的颜色
+        this.controlElement.classList.remove("finish");
+        // @ts-ignore
+        if (this.inputSlider.value !== "0") {
+            this.controlElement.classList.add("finish");
+        }
+    }
+
     _init() {
-        this.inputSlider.addEventListener("input", () => {
-            // @ts-ignore
-            this.inputLabel.textContent = this.inputSlider.value;
-            // 设置完成后的颜色
-            this.controlElement.classList.remove("finish");
-            // @ts-ignore
-            if (this.inputSlider.value !== "0") {
-                this.controlElement.classList.add("finish");
-            }
-        });
+        this.inputSlider.addEventListener("input", this.updateState.bind(this));
+        this.inputSlider.addEventListener("click", this.updateState.bind(this));
     }
 
     /**

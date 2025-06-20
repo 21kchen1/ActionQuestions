@@ -23,4 +23,14 @@ function saveToJSONandDownload(object, fileName) {
     URL.revokeObjectURL(url);
 }
 
-export {saveToJSONandDownload}
+/**
+ * 保存数据到浏览器缓存
+ * @param {*} object 保存对象
+ * @param {string} key 键值
+ */
+function saveToCache(object, key) {
+    const objectString = JSON.stringify(object);
+    localStorage.setItem(key, objectString);
+}
+
+export {saveToJSONandDownload, saveToCache};

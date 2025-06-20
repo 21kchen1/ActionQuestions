@@ -39,6 +39,11 @@ body {
     justify-content: center;
 }
 
+/* 隐藏 */
+.hidden {
+    display: none;
+}
+
 /* 背景 */
 .backgroundBox {
     width: 100%;
