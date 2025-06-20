@@ -101,7 +101,7 @@ async function setAll() {
      */
     // @ts-ignore
     var saveButton = await buttonFactor.create(saveButtonBox);
-    saveButton.setConfig(new Button.Config("保存", "var(--MainGreen)", null));
+    saveButton.setConfig(new Button.Config("暂存", "var(--MainGreen)", null));
 
     // 跳转
     const jumpButtonBox = document.querySelector(".coreBox .floatBox .controlButton#jump");
